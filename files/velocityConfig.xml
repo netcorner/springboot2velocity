@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+
+
+
+    <!-- 一定要放在viewResolver的前面，这样就先去找velocity的 -->
+    <bean id="velocityConfigurer" class="com.netcorner.hotelanalysis.utils.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/templates/" /><!-- 模板存放的路径 -->
+        <property name="velocityProperties">
+            <props>
+                <prop  key="velocimacro.permissions.allow.inline.local.scope">true</prop>
+                <prop  key="input.encoding">UTF-8</prop>
+                <prop  key="output.encoding">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="velocityViewResolver" class="com.netcorner.hotelanalysis.utils.velocity.VelocityViewResolver">
+        <property name="cache" value="false" />
+        <property name="prefix" value="/templates/" /><!-- 视图文件的前缀，即存放的路径 -->
+        <property name="suffix" value=".html" /><!-- 视图文件的后缀名 -->
+        <!--<property name="toolboxConfigLocation" value="/WEB-INF/tools.xml" /><!–toolbox配置文件路径–>-->
+        <property name="dateToolAttribute" value="date" /><!--日期函数名称-->
+        <property name="numberToolAttribute" value="number" /><!--数字函数名称-->
+        <property name="contentType" value="text/html;charset=UTF-8" />
+        <property name="exposeSpringMacroHelpers" value="true" /><!--是否使用spring对宏定义的支持-->
+        <property name="exposeRequestAttributes" value="true" /><!--是否开放request属性-->
+        <property name="requestContextAttribute" value="rc"/><!--request属性引用名称-->
+    </bean>
+</beans>
