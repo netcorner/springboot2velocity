@@ -29,6 +29,7 @@
            @Value("${spring.velocity.suffix:.html}")
            private String suffix;
        
+       
            @Bean
            public VelocityConfigurer getVelocityConfigurer()
            {
