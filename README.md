@@ -30,6 +30,7 @@
            private String suffix;
        
        
+       
            @Bean
            public VelocityConfigurer getVelocityConfigurer()
            {
